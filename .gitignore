@@ -259,3 +259,4 @@ texture-atlas.h
 texture-font.h
 utf8-utils.h
 vector.h
+platform.h

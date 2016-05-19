@@ -35,7 +35,7 @@
 
 #include <stdlib.h>
 #include <cstdint>
-
+#include <filesystem>
 #include "TextureAtlas.h"
 
 namespace ftgl
@@ -50,7 +50,7 @@ namespace ftgl
 	 *
 	 * Example Usage:
 	 * @code
-	 * #include "texture-font.h"
+	 * #include "TextureFont.h"
 	 *
 	 * int main( int arrgc, char *argv[] )
 	 * {
@@ -61,6 +61,8 @@ namespace ftgl
 	 * @{
 	 */
 
+//TODO: change to std::filesistem once compilers incorporate it into standard
+namespace fs = std::experimental::filesystem;
 
 	/**
 	 * A structure that hold a kerning value relatively to a Unicode
@@ -250,7 +252,7 @@ namespace ftgl
 			/**
 			 * Font filename, for when location == TEXTURE_FONT_FILE
 			 */
-			std::string m_filename;
+			fs::path m_filename;
 
 			/**
 			 * Font memory address, for when location == TEXTURE_FONT_MEMORY
@@ -378,7 +380,8 @@ namespace ftgl
 		//NOTE: the pointer returned by getGlyph is only guaranteed to be valid
 		//if no more glyphs are loaded (which may require the vector to expand)
 		const Glyph* getGlyph(const char* codepoint);
-
+		//NOTE: this version does not attempt to load a glyph if not found
+		const Glyph* getLoadedGlyph(uint32_t ucodepoint);
 		size_t loadGlyphs(const char* codepoints);
 
 		operator bool() const

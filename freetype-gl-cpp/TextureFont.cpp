@@ -48,7 +48,7 @@ static constexpr int   HRES  = 64;
 static constexpr float HRESf = 64.f;
 static constexpr int   DPI   = 72;
 
-//#define FTGL_STDERR_DISPLAY
+#define FTGL_STDERR_DISPLAY
 
 #ifdef FTGL_STDERR_DISPLAY
 #include <cstdio>
@@ -195,6 +195,11 @@ ftgl::Font::getGlyph(const char * codepoint)
 		return findGlyph(ucodepoint);
 	}
 	return nullptr;
+}
+
+const ftgl::Glyph* ftgl::Font::getLoadedGlyph(uint32_t ucodepoint)
+{
+	return findGlyph(ucodepoint);
 }
 
 size_t ftgl::Font::loadGlyphs(const char* codepoints)
@@ -466,7 +471,8 @@ bool ftgl::Font::loadFace(float size, FT_Library *library, FT_Face *face) const
 	switch (m_location) 
 	{
 	case TEXTURE_FONT_FILE:
-		error = FT_New_Face(*library, m_filename.c_str(), 0, face);
+		error = FT_New_Face(*library, m_filename.generic_string().c_str(),
+			0, face);
 		break;
 
 	case TEXTURE_FONT_MEMORY:

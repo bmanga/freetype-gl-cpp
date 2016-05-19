@@ -7,7 +7,7 @@
 #include <algorithm>
 
 
-std::vector<char> letters(200'000'000);
+std::vector<char> letters(2'000'000);
 std::vector<wchar_t> letters2(5);
 
 void init()

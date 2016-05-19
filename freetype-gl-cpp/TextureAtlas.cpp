@@ -111,7 +111,7 @@ int ftgl::TextureAtlas::fit(
 
 	while (width_left > 0)
 	{
-		//assert(i < self->nodes().size());
+		assert(i < m_nodes.size());
 
 		node = m_nodes[index];
 		if (node.y > y)
@@ -132,7 +132,6 @@ void ftgl::TextureAtlas::merge()
 {
 	for (size_t i = 0; i < m_nodes.size() - 1; ++i)
 	{
-
 		auto& node = m_nodes[i];
 		auto& next = m_nodes[i + 1];
 
@@ -148,10 +147,7 @@ void ftgl::TextureAtlas::merge()
 
 ftgl::ivec4 ftgl::TextureAtlas::getRegion(size_t width, size_t height)
 {
-
-	//ftgl::ivec3 new_node;
 	ftgl::ivec4 region = { {0,0,width,height} };
-
 
 	size_t best_height = std::numeric_limits<size_t>::max();
 	int best_index = -1;
@@ -217,8 +213,9 @@ ftgl::ivec4 ftgl::TextureAtlas::getRegion(size_t width, size_t height)
 
 void ftgl::TextureAtlas::clear()
 {
-	m_nodes.clear();
 	m_used = 0;
+	
+	m_nodes.clear();
 
 	// We want a one pixel border around the whole atlas to avoid any artefact when
 	// sampling texture

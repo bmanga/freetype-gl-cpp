@@ -215,6 +215,7 @@ namespace fs = std::experimental::filesystem;
 
 	public:
 		float getKerning(const char* codepoint) const;
+		float getKerning(uint32_t ucodepoint) const;
 	};
 
 	//Forward declarations of freetype structs

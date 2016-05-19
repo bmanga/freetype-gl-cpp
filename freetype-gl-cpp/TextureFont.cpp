@@ -68,8 +68,11 @@ const struct {
 
 float ftgl::Glyph::getKerning(const char * codepoint) const
 {
-	uint32_t ucodepoint = utf8_to_utf32(codepoint);
+	return getKerning(utf8_to_utf32(codepoint));
+}
 
+float ftgl::Glyph::getKerning(uint32_t ucodepoint) const
+{
 	auto k_it = std::find_if(kernings.begin(), kernings.end(),
 		[ucodepoint](const Kerning& kerning)
 	{

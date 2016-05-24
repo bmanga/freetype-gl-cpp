@@ -160,6 +160,8 @@
     <ClCompile Include="utf8-utils.c" />
     <ClCompile Include="utf8Utils.cpp" />
     <ClCompile Include="vector.c" />
+    <ClCompile Include="VertexAttribute.cpp" />
+    <ClCompile Include="VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opengl.h" />
@@ -167,10 +169,13 @@
     <ClInclude Include="texture-font.h" />
     <ClInclude Include="TextureAtlas.h" />
     <ClInclude Include="TextureFont.h" />
+    <ClInclude Include="Utility.h" />
     <ClInclude Include="utf8-utils.h" />
     <ClInclude Include="utf8Utils.h" />
     <ClInclude Include="vec234.h" />
     <ClInclude Include="vector.h" />
+    <ClInclude Include="VertexAttribute.h" />
+    <ClInclude Include="VertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

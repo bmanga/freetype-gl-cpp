@@ -111,7 +111,8 @@ bool ftgl::Font::init()
 	FT_Face face;
 
 	assert(m_size > 0);
-	assert((m_location == TEXTURE_FONT_FILE && m_filename.size())
+	assert((m_location == TEXTURE_FONT_FILE && 
+		    m_filename.generic_string().size())
 		|| (m_location == TEXTURE_FONT_MEMORY
 			&& m_memory.base && m_memory.size));
 
@@ -154,7 +155,7 @@ ftgl::Font::getGlyph(const char * codepoint)
 	uint32_t ucodepoint = ftgl::utf8_to_utf32(codepoint);
 	Glyph* glyph = nullptr;
 
-	assert(m_filename.size());
+	assert(m_filename.generic_string().size());
 
 	/* Check if codepoint has been already loaded */
 	if ((glyph = findGlyph(ucodepoint)))

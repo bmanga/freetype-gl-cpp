@@ -111,7 +111,7 @@ int ftgl::TextureAtlas::fit(
 
 	while (width_left > 0)
 	{
-		assert(i < m_nodes.size());
+		assert(index < m_nodes.size());
 
 		node = m_nodes[index];
 		if (node.y > y)
@@ -147,7 +147,7 @@ void ftgl::TextureAtlas::merge()
 
 ftgl::ivec4 ftgl::TextureAtlas::getRegion(size_t width, size_t height)
 {
-	ftgl::ivec4 region = { {0,0,width,height} };
+	ftgl::ivec4 region = { {0, 0, int(width), int(height)} };
 
 	size_t best_height = std::numeric_limits<size_t>::max();
 	int best_index = -1;

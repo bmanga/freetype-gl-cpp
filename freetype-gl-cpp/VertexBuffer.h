@@ -6,13 +6,13 @@
 #include "opengl.h"
 #include "VertexAttribute.h"
 
-static constexpr int MAX_VERTEX_ATTRIBUTES = 3;
+static constexpr int MAX_VERTEX_ATTRIBUTES = 16;
 #define FREETYPE_GL_USE_VAO
 namespace ftgl {
 class VertexBuffer
 {
 private:
-	const char* format;
+	std::string format;
 
 	//vertices are a cluster of various attributes, such as color,
 	// texture coords, and positions. stored as char

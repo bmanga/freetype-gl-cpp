@@ -142,6 +142,7 @@ public:
 	size_t width() const { return m_width; }
 	size_t height() const { return m_height; }
 	size_t depth() const { return m_depth; }
+	unsigned id() const { return m_id; }
 	const void* data() const { return m_data.get(); }
 	const Nodes& nodes() const { return m_nodes; }
 	Nodes& nodes() { return m_nodes; }

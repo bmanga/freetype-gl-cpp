@@ -184,7 +184,7 @@ ftgl::ivec4 ftgl::TextureAtlas::getRegion(size_t width, size_t height)
 	//new_node.x = region.x;
 	//new_node.y = region.y + height;
 	//new_node.z = width;
-	Node new_node{ region.x, region.y + height, int(width) };
+	Node new_node{ region.x, region.y + int(height), int(width) };
 
 	m_nodes.insert(m_nodes.begin() + best_index, new_node);
 

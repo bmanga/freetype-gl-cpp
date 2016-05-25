@@ -360,19 +360,17 @@ namespace fs = std::experimental::filesystem;
 	public:
 		struct File
 		{
-			float pt_size;
 			const char* filename;
 		};
 
 		struct Memory
 		{
-			float pt_size;
 			const char* memory_base;
 			size_t memory_size;
 		};
 
-		explicit Font(TextureAtlas* atlas, File file);
-		explicit Font(TextureAtlas* atlas, Memory memory);
+		explicit Font(TextureAtlas* atlas, float pt_size, File file);
+		explicit Font(TextureAtlas* atlas, float pt_size, Memory memory);
 
 		~Font()
 		{
@@ -389,6 +387,17 @@ namespace fs = std::experimental::filesystem;
 		{
 			return m_success;
 		}
+
+		TextureAtlas* atlas() const
+		{
+			return m_atlas;
+		}
+
+		auto height() const
+		{
+			return m_height;
+		}
+
 
 	private:
 		bool loadFace(float size, FT_Library* library, FT_Face* face)const;

@@ -88,16 +88,21 @@ float ftgl::Glyph::getKerning(uint32_t ucodepoint) const
 /*******************Font*****************/
 
 
-ftgl::Font::Font(TextureAtlas* atlas, File file) : m_atlas(atlas),
-m_location(TEXTURE_FONT_FILE), m_filename(file.filename), m_size(file.pt_size)
+ftgl::Font::Font(TextureAtlas* atlas, float pt_size, File file) : 
+	m_atlas(atlas),
+	m_location(TEXTURE_FONT_FILE),
+	m_filename(file.filename),
+	m_size(pt_size)
 {
 	m_success = init();
 }
 
 
-ftgl::Font::Font(TextureAtlas* atlas, Memory memory) : m_atlas(atlas),
-	m_location(TEXTURE_FONT_MEMORY), m_memory{ memory.memory_base, memory.memory_size },
-	m_size(memory.pt_size)
+ftgl::Font::Font(TextureAtlas* atlas, float pt_size, Memory memory) : 
+	m_atlas(atlas),
+	m_location(TEXTURE_FONT_MEMORY), 
+	m_memory{ memory.memory_base, memory.memory_size },
+	m_size(pt_size)
 {
 	assert(m_memory.base);
 	assert(m_memory.size);

@@ -2,7 +2,7 @@
 
 
 ftgl::VertexBuffer::VertexBuffer(const char* format):
-	format(strdup(format))
+	format(format)
 {
 	const char* start = format;
 	const char* end = nullptr;
@@ -52,7 +52,7 @@ ftgl::VertexBuffer::VertexBuffer(const char* format):
 
 const char* ftgl::VertexBuffer::getFormat() const
 {
-	return format;
+	return format.c_str();
 }
 
 void ftgl::VertexBuffer::upload()
@@ -254,18 +254,16 @@ void ftgl::VertexBuffer::pushBackIndices(const GLuint* pindices, size_t icount)
 void ftgl::VertexBuffer::pushBackVertices(const char* pvertices, size_t vcount)
 {
 	state |= State::DIRTY;
-	//memcpy the indices at the end of the vector
-	auto end = indices.size();
-	vertices.resize(end + vcount * vertex_stride);
-	memcpy(&vertices[end], pvertices, vcount * vertex_stride);
+	vertices.insert(vertices.end(), 
+		pvertices,
+		pvertices + vcount * vertex_stride);
 }
 
-void ftgl::VertexBuffer::insertIndices(size_t index, const GLuint* pindices, size_t count)
+void ftgl::VertexBuffer::insertIndices(size_t index, const GLuint* pindices, size_t icount)
 {
 	assert(index <= indices.size());
 
-	state |= State::DIRTY;
-	indices.insert(indices.begin() + index, pindices, pindices + count);
+	indices.insert(indices.end(), pindices, pindices + icount);
 }
 
 void ftgl::VertexBuffer::insertVertices(size_t index, const char* pvertices, size_t vcount)

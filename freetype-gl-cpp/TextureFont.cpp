@@ -51,18 +51,7 @@ static constexpr int   DPI   = 72;
 #define FTGL_STDERR_DISPLAY
 
 #ifdef FTGL_STDERR_DISPLAY
-#include <cstdio>
-
-#undef __FTERRORS_H__
-#define FT_ERRORDEF( e, v, s )  { e, s },
-#define FT_ERROR_START_LIST     {
-#define FT_ERROR_END_LIST       { 0, 0 } };
-const struct {
-	int          code;
-	const char*  message;
-} FT_Errors[] =
-#include FT_ERRORS_H
-
+#include "FT_Errors.h"
 #endif
 
 

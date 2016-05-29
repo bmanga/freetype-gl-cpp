@@ -11,6 +11,7 @@ private:
 	std::string name;
 	int size = 0;
 	int index = -1;
+
 public:
 	std::string getName() const
 	{

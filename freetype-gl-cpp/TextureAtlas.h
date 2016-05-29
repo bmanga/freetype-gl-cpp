@@ -131,6 +131,11 @@ private:
 	*/
 	std::unique_ptr<unsigned char, decltype(std::free)*> m_data;
 
+	/**
+	* the texture is dirty and needs reuploading
+	*/
+	bool m_dirty = true;
+
 public:
 	TextureAtlas(size_t width, size_t height, size_t depth);
 	~TextureAtlas();

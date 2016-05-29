@@ -144,7 +144,7 @@ bool ftgl::Font::init()
 }
 
 const ftgl::Glyph*
-ftgl::Font::getGlyph(const char * codepoint)
+ftgl::Font::getGlyph(const char* codepoint)
 {
 	uint32_t ucodepoint = ftgl::utf8_to_utf32(codepoint);
 	Glyph* glyph = nullptr;

@@ -81,6 +81,8 @@ void ftgl::TextureAtlas::setRegion(
 	assert(y < (m_height - 1));
 	assert((y + height) <= (m_height - 1));
 
+	m_dirty = true;
+
 	size_t charsize = sizeof(char);
 
 	for (size_t i = 0; i < height; ++i)
@@ -203,7 +205,6 @@ ftgl::ivec4 ftgl::TextureAtlas::getRegion(size_t width, size_t height)
 
 		m_nodes.erase(m_nodes.begin() + i);
 		--i;
-
 	}
 	merge();
 	m_used += width * height;
@@ -214,6 +215,7 @@ ftgl::ivec4 ftgl::TextureAtlas::getRegion(size_t width, size_t height)
 void ftgl::TextureAtlas::clear()
 {
 	m_used = 0;
+	m_dirty = true;
 	
 	m_nodes.clear();
 
@@ -227,6 +229,8 @@ void ftgl::TextureAtlas::clear()
 
 void ftgl::TextureAtlas::upload()
 {
+	if (!m_dirty) return;
+
 	if (!m_id)
 	{
 		glGenTextures(1, &m_id);
@@ -263,5 +267,7 @@ void ftgl::TextureAtlas::upload()
 			0, GL_RED, GL_UNSIGNED_BYTE, data());
 #endif
 	}
+
+	m_dirty = false;
 }
 
